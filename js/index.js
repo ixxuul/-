@@ -23,7 +23,7 @@ var Messenger = function () {
     };
   }
 
-  Messenger.send = function send() {
+  Messenger.prototype.send = function send() {
     var text = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
 
     text = this.filter(text);
@@ -42,7 +42,7 @@ var Messenger = function () {
     }
   };
 
-  Messenger.recieve = function recieve() {
+  Messenger.prototype.recieve = function recieve() {
     var text = arguments.length <= 0 || arguments[0] === undefined ? '' : arguments[0];
 
     text = this.filter(text);
