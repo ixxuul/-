@@ -54,7 +54,7 @@ var Messenger = function () {
         time: new Date().getTime()
       };
 
-      //this.messageList.push(message);
+      this.messageList.push(message);
 
       this.onRecieve(message);
     }
@@ -1360,7 +1360,7 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
   messenger.onRecieve = buildRecieved;
 
   setTimeout(function () {
-    messenger.prototype.recieve('Hello 我是喵说汪讲的客服，关于宠物的问题都可以问我哦');
+    messenger.recieve('Hello 我是喵说汪讲的客服，关于宠物的问题都可以问我哦');
   }, 1500);
 
   // setTimeout(function () {
