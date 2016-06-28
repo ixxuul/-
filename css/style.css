@@ -199,7 +199,7 @@ body {
 .message-wrapper .text-wrapper {
   padding: 10.66667px;
   min-height: 42.66667px;
-  width: 60%;
+  width: 90%;
   margin: 0 10.66667px;
   box-shadow: 0px 1px 0px 0px rgba(50, 50, 50, 0.3);
   border-radius: 2px;
@@ -207,6 +207,7 @@ body {
   position: relative;
   /* word-break: break-all; */
   opacity: 0;
+  font-size: small;
 }
 .message-wrapper .text-wrapper:before {
   content: '';
