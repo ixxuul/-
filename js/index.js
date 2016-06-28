@@ -1374,7 +1374,9 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
   $input.focus();
 
   $send.on('click', function (e) {
+    e.preventDefault();
     sendMessage();
+
   });
 
   // $input.on('input', function(e){
