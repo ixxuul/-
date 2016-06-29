@@ -94,7 +94,7 @@ var BuildHTML = function () {
   }
 
   BuildHTML.prototype._build = function _build(text, who) {
-    return '<div class="' + this.messageWrapper + ' ' + this[who + 'Class'] + '">\n              <div class="' + this.circleWrapper + ' animated bounceIn"></div>\n              <div class="' + this.textWrapper + '">...</div>\n            </div>';
+    return '<div class="' + this.messageWrapper + ' ' + this[who + 'Class'] + '">\n                   <div class="' + this.textWrapper + '">...</div>\n            </div>';
   };
 
   BuildHTML.prototype.me = function me(text) {
@@ -1183,7 +1183,7 @@ answer:"就像我们突然从暗的地方走到强光下会突然看不清，要
 },
 
 {question:"猫咪发情的时候可以吃人的避孕药吗？",
-answer:"不知道什么时候开始，网上流传着当猫咪发情时给它服用避孕药可以减缓猫咪发情的行为。小编在此提醒大家千万千万千万不可以给猫咪服用避孕药哦！！! 因为避孕药很容易造成猫咪得子宫、乳腺肿瘤或其他生殖系统病变，所以坚决不可以给猫咪服用人用避孕药！市场上也没有适合猫咪服用的避孕药物"
+answer:"不知道什么时候开始，网上流传着当猫咪发情时给它服用避孕药可以减缓猫咪发情的行为。小编在此提醒大家千万千万千万不可以给猫咪服用避孕药哦！！! 因为避孕药很容易造成猫咪得子宫、乳腺肿瘤或其他生殖系统病变，所以坚决不可以给猫咪服用人用避孕药！市场上也没有适合���咪服用的避孕药物"
 },
 
 {question:"猫咪的弹跳力有多强？",
@@ -1302,6 +1302,10 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
   function safeText(text) {
     $content.find('.message-wrapper').last().find('.text-wrapper').text(text);
   }
+  
+    function safeMeText(text) {
+    $content.find('.message-wrapper + .me').last().find('.text-wrapper').text(text);
+  }
 
   function animateText() {
     setTimeout(function () {
@@ -1309,6 +1313,12 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
     }, 350);
   }
 
+  function animateMeText() {
+    setTimeout(function () {
+      $content.find('.message-wrapper + .me').last().find('.text-wrapper').addClass('animated fadeIn');
+    }, 350);
+  }
+  
   function scrollBottom() {
     $($inner).animate({
       scrollTop: $($content).offset().top + $($content).outerHeight(true)
@@ -1322,8 +1332,8 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
     console.log('sending: ', message.text);
 
     $content.append(buildHTML.me(message.text));
-    safeText(message.text);
-    animateText();
+    safeMeText(message.text);
+    animateMeText();
 
     scrollBottom();
   }
@@ -1340,43 +1350,54 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
 
   function sendMessage() {
     var text = $input.val();
-    messenger.send(text);
 
    for (var i = 0; i < db.length; i++){
       if(text === db[i].question){
         messenger.recieve(db[i].answer);
         $input.val('');
         $input.focus();
+        // $input.attr("readonly", true);
         return;
       }
     };
-        messenger.recieve("我暂时不知道怎么回答，试试别的问题吧")
+        messenger.recieve("我暂时不知道怎么回答，试试输入一些关键词吧！比如“狗狗” “猫咪” “吃” “训练” 等等。")
         $input.val('');
         $input.focus();
+        // $input.attr("readonly", true);
 
+        
   }
 
   messenger.onSend = buildSent;
   messenger.onRecieve = buildRecieved;
 
   setTimeout(function () {
-    messenger.recieve('Hello 我是喵说汪讲的客服，关于宠物的问题都可以问我哦');
-  }, 1500);
+    messenger.recieve('Hello 我是汪说喵讲的客服，关于宠物的问题都可以问我哦');
+  }, 150);
 
-  // setTimeout(function () {
-  //   messenger.recieve('这里只能提供自动微客服哦，有任何我回答不了的问题，请咨询我们的人工客服：）');
-  // }, 5000);
+   setTimeout(function () {
+     messenger.recieve('这里只能提供自动微客服哦，有任何我回答不了的问题，请咨询我们的人工客服：）');
+   }, 50000);
 
   // setTimeout(function () {
   //   messenger.recieve('希望你能提宝贵的意见给我们哦');
   // }, 7500);
 
-  $input.focus();
+  // $input.focus();
 
   $send.on('click', function (e) {
-    e.preventDefault();
-    sendMessage();
-
+      // $input.val('');
+    
+    // messenger.send($input.val());
+    // sendMessage();
+    // $input.blur();
+    
+    
+    $send.blur();
+    var e = jQuery.Event("keydown");
+    e.which = 13; // # Some key code value
+    e.keyCode = 13;
+    $input.trigger(e);
   });
 
   // $input.on('input', function(e){
@@ -1396,8 +1417,9 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
     if (key === 13) {
       // enter key
       e.preventDefault();
-
+      messenger.send($input.val());
       sendMessage();
+      $input.blur();
     }
   });
 });

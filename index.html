@@ -323,46 +323,45 @@
     ];
     $("#input").autocomplete({
       source: availableTags,
-      position: { my : "left bottom", at: "left top" }
-
+      position: { my : "left bottom", at: "left top" },
+      autoFill:true,
+      delay:0,
+      select: function(event,ui){
+      $("#input").val(ui.item.value);
+      var e = jQuery.Event("keydown");
+      e.which = 13;
+      $("#input").trigger(e);
+      $("#input").blur();
+      }
+    });
+    
+    $("#input").on("click", function() {
+        $(this).val("");
     });
   });
   </script>
   </head>
 
   <body>
-<!-- <h1 class="title">汪说喵讲</h1> -->
+<h1 class="title">汪说喵讲</h1>
 <div class="wrapper">
-  <!-- <nav id="nav" class="nav">
-    <div class="default-nav">
-      <div class="main-nav">
-        <div class="toggle"></div>
-        <div class="main-nav-item"><a href="#" class="main-nav-item-link">微客服</a></div>
-        <div class="options"></div>
-      </div>
-    </div>
-  </nav> -->
+  <!--<nav id="nav" class="nav">-->
+  <!--  <div class="default-nav">-->
+  <!--    <div class="main-nav">-->
+  <!--      <div class="toggle"></div>-->
+  <!--      <div class="main-nav-item"><a href="#" class="main-nav-item-link">微客服</a></div>-->
+        <!--<div class="options"></div>-->
+  <!--    </div>-->
+  <!--  </div>-->
+  <!--</nav>-->
   <div id="inner" class="inner">
     <div id="content" class="content"></div>
+    <div id="bottom" class="bottom">
+<textarea id="input" class="input" placeholder="狗狗换毛了怎么办？"></textarea>  
+ <div id="send" class="send" ></div>
   </div>
-  <div id="bottom" class="bottom">
-
-<!--       <div id='input' class="input-group select2-bootstrap-append input">
-          <select id="multi-append" class="form-control select2-multiple" multiple>
-            <option></option>
-            <option value="A">A</option>
-            <option value="B">B</option>
-            <option value="C">C</option>
-          </select>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button" data-select2-open="multi-append">
-              <span class="glyphicon glyphicon-search"></span>
-            </button>
-          </span>
-        </div> -->
-<textarea id="input" class="input"></textarea>  
- <div id="send" class="send"></div>
   </div>
+  
 </div>
     <script src="js/index.js"></script>
 
