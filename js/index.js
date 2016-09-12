@@ -95,6 +95,7 @@ var BuildHTML = function () {
 
   BuildHTML.prototype._build = function _build(text, who) {
     return '<div class="' + this.messageWrapper + ' ' + this[who + 'Class'] + '">\n                <div class="' + this.textWrapper + '">...</div>\n            </div>';
+
   };
   
   BuildHTML.prototype.me = function me(text) {
@@ -627,7 +628,7 @@ answer:"最近有个问题常常会被大家误解哦！狗狗出血和人月经
 },
 
 {question:"狗狗可以一直关笼子吗？",
-answer:"你知道吗？狗狗是绝对不可以长期困在狗笼里地哦！三个月至六个月大最多只可困三小时便要放他出来活动或上厕所，成犬只可困六小时。如果困太久，有可能令狗狗的指位受伤，心理上也不好过。长期困笼的狗极有可能演变成一头问题狗，有可能造成侵略性或过份恐惧。必要的话小编推荐可以用围栏哦"
+answer:"你知道吗？狗狗是绝对不可以长期困在狗笼里地哦���三个月至六个月大最多只可困三小时便要放他出来活动或上厕所，成犬只可困六小时。如果困太久，有可能令狗狗的指位受伤，心理上也不好过。长期困笼的狗极有可能演变成一头问题狗，有可能造成侵略性或过份恐惧。必要的话小编推荐可以用围栏哦"
 },
 
 {question:"狗狗时色盲吗？",
@@ -1369,7 +1370,7 @@ answer:"很多人会好奇猫粮和狗粮可以互换吗？答案是不可以哦
   messenger.onSend = buildSent;
   messenger.onRecieve = buildRecieved;
 
-  setTimeout(function () {
+  setTimeout(function (){
     messenger.recieve('Hello 我是汪说喵讲的自动客服，关于宠物的问题都可以问我哦！试试输入一些关键词，比如狗狗，猫咪等');
   }, 150);
 

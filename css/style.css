@@ -46,10 +46,6 @@ body {
   margin-bottom: 32px;
 }
 
-/*#inner{*/
-/*    backgroundImage: url('images/logo.jpg') no-repeat center;*/
-/*}*/
-
 /*.nav {*/
 /*  position: fixed;*/
 /*  top: 0;*/
@@ -198,11 +194,13 @@ body {
   margin: 8px 0;
   padding: 8px 0;
 }
+
 .message-wrapper .circle-wrapper {
   height: 42.66667px;
   width: 42.66667px;
   border-radius: 50%;
 }
+
 .message-wrapper .text-wrapper {
   padding: 8px;
   min-height: 42.66667px;
